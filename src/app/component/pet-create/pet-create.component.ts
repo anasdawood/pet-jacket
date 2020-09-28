@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { PetBreadsService } from '../../service/pet-breads.service';
+import { PetBreedsService } from '../../service/pet-breads.service';
 import { PetHouseService } from '../../service/pet-house.service';
 import { Pet } from 'src/app/model/pet';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-pet-create',
@@ -13,8 +13,8 @@ export class PetCreateComponent implements OnInit, AfterViewInit {
 
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
   map: google.maps.Map;
-  lat = 40.730610;
-  lng = -73.935242;
+  lat = 50.447241;
+  lng = -104.618141;
   coordinates = new google.maps.LatLng(this.lat, this.lng);
   mapOptions: google.maps.MapOptions = {
     center: this.coordinates,
@@ -25,18 +25,19 @@ export class PetCreateComponent implements OnInit, AfterViewInit {
 
   marker = new google.maps.Marker();
 
-  breads: any[];
+  breeds: any[];
+  types: any[];
 
   pet: Pet;
   loading: boolean = false;
   result: any;
 
-  constructor(private petBreadsService: PetBreadsService, private petService: PetHouseService) {
+  constructor(private petBreedsService: PetBreedsService, private petService: PetHouseService) {
   }
 
   ngOnInit() {
     this.pet = new Pet(null);
-    this.breads = this.petBreadsService.returnAllBreads();
+    this.types = this.petBreedsService.returnAllTypes();
   }
   ngAfterViewInit() {
     this.mapInitializer();
@@ -93,7 +94,7 @@ export class PetCreateComponent implements OnInit, AfterViewInit {
 
   public savePet(event) {
     this.loading = true;
-    if (this.pet.bread == null || this.pet.name == null || this.pet.lat == null || this.pet.lon == null || this.pet.location == null) {
+    if (this.pet.breed == null || this.pet.name == null || this.pet.lat == null || this.pet.lon == null || this.pet.location == null) {
       alert("Please fill all fields");
       this.loading = false;
       return;
@@ -109,8 +110,24 @@ export class PetCreateComponent implements OnInit, AfterViewInit {
           alert(this.result.statusText);
         }
       }
+    }, errorEvent => {
+      if (errorEvent instanceof HttpErrorResponse) {
+        alert("Something Went Wrong !");
+      }
     });
 
+  }
+
+  getBreeds(petType)
+  {
+    if(petType==="Dog")
+    {
+      this.breeds = this.petBreedsService.returnAllDogBreeds();
+    }
+    if(petType==="Cat")
+    {
+      this.breeds = this.petBreedsService.returnAllCatBreeds();
+    }
   }
 
   get isLoading() {

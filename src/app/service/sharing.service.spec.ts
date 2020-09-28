@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PetBreedsService } from './pet-breeds.service';
+import { SharingService } from './sharing.service';
 
-describe('PetBreedsService', () => {
+describe('SharingService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PetBreedsService = TestBed.get(PetBreedsService);
+    const service: SharingService = TestBed.get(SharingService);
     expect(service).toBeTruthy();
   });
 });

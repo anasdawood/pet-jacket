@@ -2,7 +2,8 @@ export class Pet {
 
     id: string;
     name: string;
-    bread: string;
+    breed: string;
+    type: string;
     location: string;
     lat: string;
     lon: string;
@@ -13,7 +14,8 @@ export class Pet {
       if (body != null) {
         this.id= body['id']
         this.name= body['name']
-        this.bread= body['bread']
+        this.breed= body['breed']
+        this.type = body['type'];
         this.location= body['location']
         this.lat= body['lat']
         this.lon= body['lon']

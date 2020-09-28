@@ -14,13 +14,18 @@ import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import {ButtonModule} from 'primeng/button';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { JacketResultComponent } from './component/jacket-result/jacket-result.component';
+import { HeaderComponent } from './component/header/header.component';
+import {ToolbarModule} from 'primeng/toolbar';
 
 @NgModule({
   declarations: [
     AppComponent,
     PetHomeComponent,
     SidebarComponent,
-    PetCreateComponent
+    PetCreateComponent,
+    JacketResultComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     TableModule,
     DropdownModule,
     ButtonModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToolbarModule
   ],
   providers: [PetHouseService],
   bootstrap: [AppComponent]
