@@ -1,0 +1,16 @@
+
+<h5>Name</h5>
+<input type="text" pInputText [(ngModel)]="pet.name"> 
+
+<h5>Bread</h5>
+<p-dropdown [options]="breads" [(ngModel)]="pet.bread" placeholder="Select a Bread" [showClear]="true" [virtualScroll]="true" [itemSize]="31" filter="true"></p-dropdown>
+
+<div #mapContainer id="map" style=" height: 200px;
+width: 50%;"></div>
+<span>{{pet.location}}</span>
+
+
+<br />
+<button pButton type="button" label="Click" (click)="savePet($event)" [disabled]="isLoading"></button>
+<br />
+<p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
