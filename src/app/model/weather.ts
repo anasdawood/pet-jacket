@@ -22,5 +22,6 @@ export class Weather {
         "Mostly Cloudy w/ T-Storms",
         "Mostly Cloudy w/ Flurries",
         "Mostly Cloudy w/ Snow"
-    ]
+    ];
+    needJacketWeatherLowerCase = this.needJacketWeather.map(v=>v.toLowerCase());
 }

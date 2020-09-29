@@ -48,7 +48,7 @@ export class JacketResultComponent implements OnInit {
     this.forecastDay = forecast["Day"]["IconPhrase"];
     this.forecastNight = forecast["Night"]["IconPhrase"];
     
-    return this.weatherList.needJacketWeather.indexOf(this.forecastDay) == -1
-    && this.weatherList.needJacketWeather.indexOf(this.forecastNight) == -1;
+    return this.weatherList.needJacketWeatherLowerCase.indexOf(this.forecastDay.toLowerCase()) == -1
+    && this.weatherList.needJacketWeatherLowerCase.indexOf(this.forecastNight.toLowerCase()) == -1;
   }
 }

@@ -1,4 +1,4 @@
 <p>{{message}}</p>
 <img src="{{icon}}" />
-<p>{{forecastDay}}</p>
-<p>{{forecastNight}}</p>
+<p *ngIf="forecastDay">Day Forecast: {{forecastDay}}</p>
+<p *ngIf="forecastNight">Night Forecast: {{forecastNight}}</p>
