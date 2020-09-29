@@ -7,7 +7,7 @@ import { HttpRequest, HttpClient, HttpResponse } from '@angular/common/http';
 export class WeatherService {
 
   private baseUrl:String = "https://dataservice.accuweather.com/";
-  private API_KEY = "7i9wODbF8aJs6qvCFvo4aiMvKy94XZCs";
+  private API_KEY = "accuWeather_API_KEY";
 
   constructor(private httpClient: HttpClient) { }
 
