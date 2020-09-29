@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { WeatherService } from 'src/app/service/weather.service';
 import { Pet } from 'src/app/model/pet';
 import { SharingService } from 'src/app/service/sharing.service';
+import { Weather } from 'src/app/model/weather';
 
 @Component({
   selector: 'app-jacket-result',
@@ -15,6 +16,9 @@ export class JacketResultComponent implements OnInit {
   pet: Pet;
   message:string="";
   icon:string="";
+  weatherList= new Weather();
+  forecastDay:string;
+  forecastNight:string;
 
   ngOnInit() {
     this.pet = this.sharingService.getPet();
@@ -22,7 +26,16 @@ export class JacketResultComponent implements OnInit {
     {
     this.weatherService.findLocationKey(this.pet.lat,this.pet.lon).then(key=>
       {
-        this.weatherService.findWeather(key).then(result=> console.log(result));
+        this.weatherService.findWeather(key).then(result=> {
+          if(this.needJacket(result)) {
+            this.message = "No need to wear a Jacket (Phewo!)";
+            this.icon = "../../../assets/pet_noJacket.png";
+          }
+          else{
+            this.message = "Better wear a jacket, they look so cute with a jacket";
+            this.icon = "../../../assets/pet_withJacket.png";
+          }          
+        });
       });
     }
     else{
@@ -30,5 +43,12 @@ export class JacketResultComponent implements OnInit {
     }
   }
 
-
+  needJacket(forecast):boolean
+  {
+    this.forecastDay = forecast["Day"]["IconPhrase"];
+    this.forecastNight = forecast["Night"]["IconPhrase"];
+    
+    return this.weatherList.needJacketWeather.indexOf(this.forecastDay) == -1
+    && this.weatherList.needJacketWeather.indexOf(this.forecastNight) == -1;
+  }
 }

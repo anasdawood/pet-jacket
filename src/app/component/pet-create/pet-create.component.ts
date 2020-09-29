@@ -112,7 +112,12 @@ export class PetCreateComponent implements OnInit, AfterViewInit {
       }
     }, errorEvent => {
       if (errorEvent instanceof HttpErrorResponse) {
-        alert("Something Went Wrong !");
+        var message = "";
+        if(errorEvent.error.code == 11000)
+        {
+          message = "Duplicate Entry. Pet is already in our records.";
+        }
+        alert("Something Went Wrong ! " + message);
       }
     });
 

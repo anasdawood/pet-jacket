@@ -22,6 +22,6 @@ export class WeatherService {
   {
     const requestUrl = `forecasts/v1/daily/1day/${locationKey}?apikey=${this.API_KEY}`;
     const httpRequest = new HttpRequest('GET', this.baseUrl + requestUrl);
-    return this.httpClient.request(httpRequest).toPromise().then(res=>res["body"]);
+    return this.httpClient.request(httpRequest).toPromise().then(res=>res["body"]).then(data=>data["DailyForecasts"][0]);
   }
 }

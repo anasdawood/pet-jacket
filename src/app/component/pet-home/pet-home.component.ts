@@ -32,7 +32,6 @@ export class PetHomeComponent implements OnInit {
 
   checkIfNeedJacket(pet:Pet)
   {
-    console.log(pet);
     this.sharingService.setPet(pet);
     this.router.navigate(["/weather"])
     
