@@ -20,9 +20,7 @@ export class PetCreateComponent implements OnInit, AfterViewInit {
     center: this.coordinates,
     zoom: 8,
   };
-
   geocoder = new google.maps.Geocoder();
-
   marker = new google.maps.Marker();
 
   breeds: any[];
@@ -30,7 +28,7 @@ export class PetCreateComponent implements OnInit, AfterViewInit {
 
   pet: Pet;
   loading: boolean = false;
-  result: any;
+  saveResult: any;
 
   constructor(private petBreedsService: PetBreedsService, private petService: PetHouseService) {
   }
@@ -101,13 +99,13 @@ export class PetCreateComponent implements OnInit, AfterViewInit {
     }
     this.loading = false;
     this.petService.savePet(this.pet).then(res => {
-      this.result = res;
-      if (this.result instanceof HttpResponse) {
-        if (this.result.status == 201) {
+      this.saveResult = res;
+      if (this.saveResult instanceof HttpResponse) {
+        if (this.saveResult.status == 201) {
           alert("Pet Was added");
         }
         else {
-          alert(this.result.statusText);
+          alert(this.saveResult.statusText);
         }
       }
     }, errorEvent => {
