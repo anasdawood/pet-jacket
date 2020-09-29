@@ -7,7 +7,7 @@ import {Pet} from "../model/pet";
 })
 export class PetHouseService {
 
-  baseUrl : String = "http://localhost:9000/"
+  baseUrl : String = "https://pet-jacket.herokuapp.com/"
 
   constructor(private httpClient: HttpClient) { }
 
