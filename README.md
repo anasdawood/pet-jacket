@@ -31,6 +31,7 @@ Weather which require a Jacket/Umbrella:
 "Mostly Cloudy w/ Flurries",
 "Mostly Cloudy w/ Snow"
 
+After downoading the code add you googlemap key in `src\index.html` and add accuweather Key to `src\app\service\weather.service`
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
